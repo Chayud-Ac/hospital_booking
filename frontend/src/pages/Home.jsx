@@ -91,67 +91,68 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <div className="container mx-auto max-w-screen-lg px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
+            <div className="py-[30px] px-5">
+              <div className="flex items-center justify-center">
+                <img src={icon01} />
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
-          <div className="py-[30px] px-5">
-            <div className="flex items-center justify-center">
-              <img src={icon01} />
+              <div className="mt-[30px]">
+                <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                  ค้นหาหมอเลย
+                </h2>
+                <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
+                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                </p>
+                <Link
+                  to="/doctors"
+                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                >
+                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                </Link>
+              </div>
+            </div>
+            <div className="py-[30px] px-5">
+              <div className="flex items-center justify-center">
+                <img src={icon02} />
+              </div>
+
+              <div className="mt-[30px]">
+                <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                  สถานที่
+                </h2>
+                <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
+                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                </p>
+                <Link
+                  to="/doctors"
+                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                >
+                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                </Link>
+              </div>
             </div>
 
-            <div className="mt-[30px]">
-              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                ค้นหาหมอเลย
-              </h2>
-              <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
-              </p>
-              <Link
-                to="/doctors"
-                className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-              >
-                <BsArrowRight className="group-hover:text-white w-6 h-5" />
-              </Link>
-            </div>
-          </div>
-          <div className="py-[30px] px-5">
-            <div className="flex items-center justify-center">
-              <img src={icon02} />
-            </div>
+            <div className="py-[30px] px-5">
+              <div className="flex items-center justify-center">
+                <img src={icon03} />
+              </div>
 
-            <div className="mt-[30px]">
-              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                สถานที่
-              </h2>
-              <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
-              </p>
-              <Link
-                to="/doctors"
-                className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-              >
-                <BsArrowRight className="group-hover:text-white w-6 h-5" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="py-[30px] px-5">
-            <div className="flex items-center justify-center">
-              <img src={icon03} />
-            </div>
-
-            <div className="mt-[30px]">
-              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                ทำการนัด
-              </h2>
-              <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
-              </p>
-              <Link
-                to="/doctors"
-                className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-              >
-                <BsArrowRight className="group-hover:text-white w-6 h-5" />
-              </Link>
+              <div className="mt-[30px]">
+                <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                  ทำการนัด
+                </h2>
+                <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
+                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                </p>
+                <Link
+                  to="/doctors"
+                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                >
+                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -184,7 +185,7 @@ const Home = () => {
           <div className="flex item-center justify-center flex-col lg:flex-row  ">
             {/* feature content */}
 
-            <div className="xl:w-[670px] flex flex-col max-md:flex-row items-center justify-center">
+            <div className="xl:w-[670px] flex flex-col items-center justify-center">
               <h2 className="heading text-center">ทำการรักษาได้ทุกเมื่อ</h2>
               <ul className="pl-4 text-center">
                 <li className="text_para text-center">

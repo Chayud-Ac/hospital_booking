@@ -4,7 +4,7 @@ import FaqItem from "./FaqItem";
 
 const FaqList = () => {
   return (
-    <ul>
+    <ul className="mt-[40px]">
       {faqs.map((item, index) => (
         <FaqItem item={item} key={index} />
       ))}

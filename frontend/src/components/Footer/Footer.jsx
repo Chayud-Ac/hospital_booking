@@ -53,10 +53,52 @@ const quesickLinks03 = [
 
 const Footer = () => {
   return (
-    <footer className="pb-16 pt-10">
+    <footer className="pb-16 pt-10 bg-slate-50">
       <div className="container">
-        <div className="flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
+        <div className="flex justify-between flex-col md:flex-row flex-wrap gap-[30px] max-sm:justify-center items-center">
           <div>
+            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor max-sm:text-center">
+              Quick link
+            </h2>
+            <ul>
+              {quesickLinks01.map((item, index) => (
+                <li key={index} className="mb-4 text-center">
+                  <Link to={item.path} className="text-[16px] leading-7">
+                    {item.display}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor text-center">
+              เลือกหมวด
+            </h2>
+            <ul>
+              {quesickLinks02.map((item, index) => (
+                <li key={index} className="mb-4 text-center">
+                  <Link to={item.path} className="text-[16px] leading-7 ">
+                    {item.display}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor">
+              ช่วยเหลือ
+            </h2>
+            <ul>
+              {quesickLinks03.map((item, index) => (
+                <li key={index} className="mb-4 text-center">
+                  <Link to={item.path} className="text-[16px] leading-7 ">
+                    {item.display}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="max-md:hidden">
             <img src={logo} alt="" />
             <p>© Copyright develop by Chayud Mahithiphark all right reserved</p>
             <div>
@@ -73,49 +115,6 @@ const Footer = () => {
                 </>
               ))}
             </div>
-          </div>
-
-          <div>
-            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor">
-              Quick link
-            </h2>
-            <ul>
-              {quesickLinks01.map((item, index) => (
-                <li key={index} className="mb-4">
-                  <Link to={item.path} className="text-[16px] leading-7">
-                    {item.display}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor">
-              เลือกหมวด
-            </h2>
-            <ul>
-              {quesickLinks02.map((item, index) => (
-                <li key={index} className="mb-4">
-                  <Link to={item.path} className="text-[16px] leading-7">
-                    {item.display}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor">
-              ช่วยเหลือ
-            </h2>
-            <ul>
-              {quesickLinks03.map((item, index) => (
-                <li key={index} className="mb-4">
-                  <Link to={item.path} className="text-[16px] leading-7">
-                    {item.display}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

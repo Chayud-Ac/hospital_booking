@@ -63,7 +63,7 @@ const Header = () => {
             <ul className="menu flex item-center gap-[2.7rem]">
               <button
                 onClick={() => menuRef.current.classList.remove("show_menu")}
-                className="absolute top-1 right-1"
+                className="absolute top-1 right-1 sm: hidden"
               >
                 <img src={xIcon} width={30} height={30} />
               </button>
