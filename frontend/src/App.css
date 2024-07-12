@@ -11,6 +11,33 @@ body {
   font-family: "Kanit", sans-serif;
 }
 
+.swiper-pagination-bullet {
+  background-color: #d1d5db !important;
+  opacity: 1 !important; /* Ensure full opacity */
+  width: 12px !important; /* Custom width */
+  height: 12px !important; /* Custom height */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #0067ff !important;
+  border: none !important;
+}
+
+.swiper {
+  padding-bottom: 70px !important;
+}
+
+.swiper-slide.swiper-slide-next {
+  background: #d1d5db;
+  border-radius: 12px;
+  box-shadow: 0px 20px 70px rgba(0, 103, 255, 0.2);
+}
+
+.swiper-slide.swiper-slide-next h4,
+.swiper-slide.swiper-slide-next p {
+  color: black !important;
+}
+
 .sticky__header {
   width: 100%;
   height: 80px;
@@ -19,6 +46,7 @@ body {
   top: 0;
   left: 0;
   z-index: 99999;
+  background: white;
   box-shadow: 3px 3px -8px 3px #ddd;
 }
 
@@ -31,6 +59,7 @@ body {
     left: 0;
     z-index: 100;
     background: #00000084;
+    display: none; /* Hide the navigation by default */
   }
 
   .menu {
@@ -47,7 +76,7 @@ body {
     line-height: 30px;
   }
 
-  .show__menu {
-    display: block;
+  .show_menu {
+    display: block; /* Show the navigation when show_menu class is added */
   }
 }

@@ -4,6 +4,7 @@ import userImg from "../../assets/images/avatar-icon.png";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { BiMenu } from "react-icons/bi";
+import xIcon from "../../assets/images/xIcon.svg";
 
 const navLink = [
   {
@@ -58,15 +59,20 @@ const Header = () => {
           </div>
 
           {/* Menu --------------------------------------------------------------------------------------------*/}
-          <div
-            className="navigation"
-            ref={menuRef}
-            onClick={() => toggleMenu()}
-          >
+          <div className="navigation" ref={menuRef}>
             <ul className="menu flex item-center gap-[2.7rem]">
+              <button
+                onClick={() => menuRef.current.classList.remove("show_menu")}
+                className="absolute top-1 right-1"
+              >
+                <img src={xIcon} width={30} height={30} />
+              </button>
               {navLink.map((link, index) => (
                 <li key={index}>
                   <NavLink
+                    onClick={() =>
+                      menuRef.current.classList.remove("show_menu")
+                    }
                     to={link.path}
                     className={({ isActive }) =>
                       isActive
@@ -101,12 +107,7 @@ const Header = () => {
               </button>
             </Link>
 
-            <span
-              className="md:hidden"
-              onClick={() => {
-                toggleMenu();
-              }}
-            >
+            <span className="md:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />
             </span>
           </div>
