@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "../pages/Home";
-import Services from "../pages/Service";
+import Service from "../pages/Service";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Contact from "../pages/Contact";
@@ -19,7 +19,7 @@ const Router = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/doctors" element={<Doctors />} />
       <Route path="/doctors/:id" element={<DoctorDetails />} />
-      <Route path="/service" element={<Services />} />
+      <Route path="/service" element={<Service />} />
     </Routes>
   );
 };

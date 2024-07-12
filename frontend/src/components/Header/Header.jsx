@@ -16,7 +16,7 @@ const navLink = [
     display: "พบแพทย์",
   },
   {
-    path: "/services",
+    path: "/service",
     display: "บริการ",
   },
   {

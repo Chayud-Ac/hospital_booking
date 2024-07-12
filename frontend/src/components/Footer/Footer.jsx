@@ -103,17 +103,15 @@ const Footer = () => {
             <p>© Copyright develop by Chayud Mahithiphark all right reserved</p>
             <div>
               {socialLinks.map((link, index) => (
-                <>
-                  <Link
-                    key={index}
-                    to={link.path}
-                    className="w-9 h-9 border border-solid border-[#181A1E] rounded-full flex items-center justify-center group hover:bg-black "
-                  >
-                    {link.icon}
-                  </Link>
-                  <h1>Github</h1>
-                </>
+                <Link
+                  key={index}
+                  to={link.path}
+                  className="w-9 h-9 border border-solid border-[#181A1E] rounded-full flex items-center justify-center group hover:bg-black "
+                >
+                  {link.icon}
+                </Link>
               ))}
+              <h1>Github</h1>
             </div>
           </div>
         </div>
