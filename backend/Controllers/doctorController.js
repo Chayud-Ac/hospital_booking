@@ -1,4 +1,6 @@
 import Doctor from "../models/DoctorSchema.js";
+import Booking from "../models/BookingSchema.js";
+import User from "../models/DoctorSchema.js";
 
 export const updateDoctor = async (req, res) => {
   const id = req.params.id;
@@ -65,5 +67,31 @@ export const getAllDoctor = async (req, res) => {
       .json({ success: true, message: "Users found", data: doctors });
   } catch (error) {
     res.status(404).json({ success: false, message: "User not found" });
+  }
+};
+
+// response object of req doctor data base on the id from the frontend
+export const getDoctorProfile = async (req, res) => {
+  const doctorId = req.userId;
+
+  try {
+    const doctor = await Doctor.findById(doctorId).select("-password");
+    if (!doctor) {
+      return res
+        .status(404)
+        .json({ success: false, message: "ไม่มีบัญชีผู้ใช้" });
+    }
+
+    const { password, ...rest } = doctor._doc;
+    const appointments = await Booking.find({ doctor: doctorId });
+
+    res.status(200).json({
+      success: true,
+      message: "กำลังหาโปรไฟล์",
+      data: { ...rest, appointments },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "มีปัญหานิดหน่อย" });
   }
 };

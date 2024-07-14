@@ -1,13 +1,45 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
+import { useParams } from "react-router-dom";
+import HashLoader from "react-spinners/HashLoader";
+import { toast } from "react-toastify";
+import { BASE_URL, token } from "../../config";
 
 const FeedBackForm = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [reviewText, SetReviewText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   const handleSubmitReview = async (e) => {
-    e.preventDefaault();
+    e.preventDefault();
+
+    try {
+      if (!rating || !reviewText) {
+        setLoading(false);
+        return toast.error("ไม่มีข้อความในช่องรีวิว");
+      }
+      const res = await fetch(`${BASE_URL}/doctors/${id}/reviews`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ rating, reviewText }),
+      });
+
+      if (res.ok) {
+        setLoading(false);
+        throw new Error(result.message);
+      }
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error("เกิดข้อผิดพลาดในการรีวิว");
+    }
+    return res;
   };
 
   return (
@@ -56,9 +88,9 @@ const FeedBackForm = () => {
       <button
         type="submit"
         className="btn"
-        onClick={() => handleSubmitReview()}
+        onClick={(e) => handleSubmitReview(e)}
       >
-        ส่ง
+        {loading ? <HashLoader size={25} color="#fff" /> : "ส่ง"}
       </button>
     </form>
   );

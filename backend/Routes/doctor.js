@@ -5,6 +5,7 @@ import {
   deleteDoctor,
   getSingleDoctor,
   getAllDoctor,
+  getDoctorProfile,
 } from "../Controllers/doctorController.js";
 
 import { authenticate, restrict } from "../auth/verifyToken.js";
@@ -17,8 +18,10 @@ const router = express.Router();
 router.use("/:doctorId/reviews", reviewRouter);
 
 router.get("/:id", getSingleDoctor);
-router.post("/:id", restrict(["admin", "doctor"]), authenticate, updateDoctor);
-router.post("/:id", restrict(["admin", "doctor"]), authenticate, deleteDoctor);
+router.put("/:id", authenticate, restrict(["admin", "doctor"]), updateDoctor);
+router.post("/:id", authenticate, restrict(["admin", "doctor"]), deleteDoctor);
 router.get("/", getAllDoctor);
+
+router.get("/profile/me", authenticate, restrict(["doctor"]), getDoctorProfile);
 
 export default router;

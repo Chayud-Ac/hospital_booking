@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
-import userImg from "../../assets/images/avatar-icon.png";
 import { NavLink, Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import { BiMenu } from "react-icons/bi";
 import xIcon from "../../assets/images/xIcon.svg";
+import { authContext } from "../../context/AuthContext";
 
 const navLink = [
   {
@@ -28,6 +28,7 @@ const navLink = [
 const Header = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const { user, role, token } = useContext(authContext);
 
   const handleStickyHeader = () => {
     window.addEventListener("scroll", () => {
@@ -89,23 +90,25 @@ const Header = () => {
 
           {/* Navbar right --------------------------------------------------------------------------------------- */}
           <div className="flex items-center gap-4">
-            <div className="hidden">
-              <Link to="/">
-                <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-                  <img
-                    src={userImg}
-                    alt=""
-                    className="w-full rounded-full"
-                  ></img>
-                </figure>
+            {token && user ? (
+              <div>
+                <Link to={`/users/profile/me`}>
+                  <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
+                    <img
+                      src={user?.photo}
+                      alt=""
+                      className="w-full rounded-full"
+                    ></img>
+                  </figure>
+                </Link>
+              </div>
+            ) : (
+              <Link to="/login">
+                <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
+                  เข้าสู่ระบบ
+                </button>
               </Link>
-            </div>
-
-            <Link to="/login">
-              <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
-                เข้าสู่ระบบ
-              </button>
-            </Link>
+            )}
 
             <span className="md:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />
