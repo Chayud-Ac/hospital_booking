@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const bookingSchema = new mongoose.Schema(
+const AppointmentSchema = new mongoose.Schema(
   {
     doctor: {
       type: mongoose.Types.ObjectId,
@@ -17,6 +17,7 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    timeSlot: { type: String, required: true }, // The specific time slot chosen
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],
@@ -30,4 +31,4 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Booking", bookingSchema);
+export default mongoose.model("Appointment", AppointmentSchema);

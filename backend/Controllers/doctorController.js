@@ -1,19 +1,58 @@
 import Doctor from "../models/DoctorSchema.js";
-import Booking from "../models/BookingSchema.js";
 import User from "../models/DoctorSchema.js";
+import Appointment from "../models/AppointmentSchema.js";
 
 export const updateDoctor = async (req, res) => {
   const id = req.params.id;
+  const {
+    name,
+    email,
+    phone,
+    bio,
+    gender,
+    specialization,
+    ticketPrice,
+    qualifications,
+    experiences,
+    timeSlots,
+    about,
+  } = req.body;
+
+  // Handle photo upload
+  const photo = req.file ? req.file.path : req.body.photo;
 
   try {
+    // No need to reformat timeSlots here as they should already be in the correct format
+    const updatedData = {
+      name,
+      email,
+      phone,
+      bio,
+      gender,
+      specialization,
+      ticketPrice,
+      qualifications,
+      experiences,
+      timeSlots, // Directly use the timeSlots from req.body
+      about,
+      photo,
+    };
+
     const updatedDoctor = await Doctor.findByIdAndUpdate(
       id,
-      { $set: req.body },
+      { $set: updatedData },
       { new: true }
     );
-    res.status(200).json({ success: true, message: "Success fully updated" });
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully updated",
+      data: updatedDoctor,
+    });
   } catch (error) {
-    res.status(500).json({ success: false, message: "failed to updated" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to update", error });
   }
 };
 
@@ -76,22 +115,26 @@ export const getDoctorProfile = async (req, res) => {
 
   try {
     const doctor = await Doctor.findById(doctorId).select("-password");
+
     if (!doctor) {
       return res
         .status(404)
         .json({ success: false, message: "ไม่มีบัญชีผู้ใช้" });
     }
 
-    const { password, ...rest } = doctor._doc;
-    const appointments = await Booking.find({ doctor: doctorId });
+    const appointments = await Appointment.find({ doctor: doctorId });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "กำลังหาโปรไฟล์",
-      data: { ...rest, appointments },
+      data: { ...doctor._doc, appointments },
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "มีปัญหานิดหน่อย" });
+    console.error("Error fetching doctor profile:", error);
+    if (!res.headersSent) {
+      return res
+        .status(500)
+        .json({ success: false, message: "มีปัญหานิดหน่อย" });
+    }
   }
 };

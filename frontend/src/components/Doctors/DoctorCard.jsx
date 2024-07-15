@@ -2,8 +2,9 @@ import React from "react";
 import starIcon from "./../../assets/images/Star.png";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import convertDateToThai from "../../utils/convertDatetoThai";
 
-const DoctorCard = ({ doctor }) => {
+const DoctorCard = ({ doctor, date }) => {
   const {
     name,
     avgRating,
@@ -15,7 +16,13 @@ const DoctorCard = ({ doctor }) => {
     experiences,
   } = doctor;
   return (
-    <div className="p-3 lg:p-5">
+    <div className="p-3 lg:p-1 mt-2">
+      {date && (
+        <div className="mb-5 mt-5 bg-primaryColor p-5 rounded-xl text-white font-semibold">
+          {convertDateToThai(date)} นาฟ๊กา{" "}
+          <span className="text-red-500">โปรดมาก่อนเวลา 15 นาที</span>
+        </div>
+      )}
       <div>
         <img src={photo} className="w-full" alt="" />
       </div>

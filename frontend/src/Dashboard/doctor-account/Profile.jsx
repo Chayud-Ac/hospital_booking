@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
-
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
 
@@ -10,7 +8,6 @@ const Profile = ({ doctorData }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
     phone: "",
     bio: "",
     gender: "",
@@ -28,22 +25,33 @@ const Profile = ({ doctorData }) => {
   });
 
   useEffect(() => {
-    setFormData({
-      name: doctorData?.name,
-      email: doctorData?.email,
-      password: doctorData?.password,
-      phone: doctorData?.phone,
-      bio: doctorData?.bio,
-      gender: doctorData?.gender,
-      specialization: doctorData?.specialization,
-      ticketPrice: doctorData?.ticketPrice,
-      qualifications: doctorData?.qualifications,
-      experiences: doctorData?.experiences,
-      timeSlots: doctorData?.timeSlots,
-      about: doctorData?.about,
-      photo: doctorData?.photo,
-    });
-  });
+    if (doctorData) {
+      const transformedTimeSlots = doctorData.timeSlots?.map((slot) => {
+        const [day, timeRange] = slot.time.split(" ");
+        const [startingTime, endingTime] = timeRange.split("-");
+        return { day, startingTime, endingTime };
+      }) || [{ day: "", startingTime: "", endingTime: "" }];
+
+      setFormData({
+        name: doctorData.name || "",
+        email: doctorData.email || "",
+        phone: doctorData.phone || "",
+        bio: doctorData.bio || "",
+        gender: doctorData.gender || "",
+        specialization: doctorData.specialization || "",
+        ticketPrice: doctorData.ticketPrice || 0,
+        qualifications: doctorData.qualifications || [
+          { startingDate: "", endingDate: "", degree: "", university: "" },
+        ],
+        experiences: doctorData.experiences || [
+          { startingDate: "", endingDate: "", position: "", hospital: "" },
+        ],
+        timeSlots: transformedTimeSlots,
+        about: doctorData.about || "",
+        photo: doctorData.photo || null,
+      });
+    }
+  }, [doctorData]);
 
   const handleInputChange = (e) => {
     const name = e.target.name;
@@ -61,16 +69,25 @@ const Profile = ({ doctorData }) => {
 
   const updateProfileHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const formattedData = {
+      ...formData,
+      timeSlots: formData.timeSlots.map((slot) => ({
+        time: `${slot.day} ${slot.startingTime}-${slot.endingTime}`,
+        available: true, // Assuming all new slots are available by default
+      })),
+    };
+
+    console.log(formattedData);
 
     try {
       const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
         method: "PUT",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formattedData),
       });
 
       const result = await res.json();
@@ -88,11 +105,11 @@ const Profile = ({ doctorData }) => {
   const addItem = (key, item) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [key]: [...(prevFormData[key] || []), item],
+      [key]: [...prevFormData[key], item],
     }));
   };
 
-  const handleReuseableInputChangeFunc = (key, index, event) => {
+  const handleReusableInputChangeFunc = (key, index, event) => {
     const { name, value } = event.target;
 
     setFormData((prevFormData) => {
@@ -114,7 +131,7 @@ const Profile = ({ doctorData }) => {
   };
 
   const handleQualificationChange = (event, index) => {
-    handleReuseableInputChangeFunc("qualifications", index, event);
+    handleReusableInputChangeFunc("qualifications", index, event);
   };
 
   const addQualification = (e) => {
@@ -134,7 +151,7 @@ const Profile = ({ doctorData }) => {
   };
 
   const handleExperienceChange = (event, index) => {
-    handleReuseableInputChangeFunc("experiences", index, event);
+    handleReusableInputChangeFunc("experiences", index, event);
   };
 
   const addExperience = (e) => {
@@ -154,7 +171,7 @@ const Profile = ({ doctorData }) => {
   };
 
   const handleTimeSlotChange = (event, index) => {
-    handleReuseableInputChangeFunc("timeSlots", index, event);
+    handleReusableInputChangeFunc("timeSlots", index, event);
   };
 
   const addTimeSlot = (e) => {

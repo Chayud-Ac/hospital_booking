@@ -5,7 +5,7 @@ import HashLoader from "react-spinners/HashLoader";
 
 const MyBooking = () => {
   const { data: appointments, loading } = useFetchData(
-    `${BASE_URL}/users/appointments/my-appointments`
+    `${BASE_URL}/appointments/appointment`
   );
 
   console.log(appointments);
@@ -15,8 +15,12 @@ const MyBooking = () => {
 
       {!loading && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {appointments.map((doctor) => (
-            <DoctorCard key={doctor._id} doctor={doctor} />
+          {appointments.map((appointment) => (
+            <DoctorCard
+              key={appointment.doctor._id}
+              doctor={appointment.doctor}
+              date={appointment.appointmentDate}
+            />
           ))}
         </div>
       )}

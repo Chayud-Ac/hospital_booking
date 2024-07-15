@@ -28,7 +28,7 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
           >
             <div>
               <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                {formatDate(item.startingDate)} - {formatDate(item.endingDate)}
+                {item.startingDate} - {item.endingDate}
                 {/* Assuming startDate and endDate exist in item */}
               </span>
               <p className="text-[16px] leading-6 font-medium text-textColor">
@@ -50,7 +50,7 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
           {experiences?.map((item, index) => (
             <li key={index} className="p-4 rounded bg-[#fff9ea]">
               <span className="text-yellowColor text-[15px] leading-6 font-semibold">
-                {formatDate(item.startingDate)} - {formatDate(item.endingDate)}
+                {item.startingDate} - {item.endingDate}
               </span>
               <p className="text-[16px] leading-5 font-medium text-textColor">
                 {item.position}

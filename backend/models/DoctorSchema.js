@@ -21,9 +21,14 @@ const DoctorSchema = new mongoose.Schema({
     type: Array,
   },
 
-  bio: { type: String, maxLength: 50 },
+  bio: { type: String },
   about: { type: String },
-  timeSlots: { type: Array },
+  timeSlots: [
+    {
+      time: { type: String, required: true, index: true },
+      available: { type: Boolean, default: true },
+    },
+  ],
   reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
   averageRating: {
     type: Number,

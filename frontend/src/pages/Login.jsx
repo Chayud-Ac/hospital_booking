@@ -46,6 +46,10 @@ const Login = () => {
         throw new Error(result.message);
       }
 
+      // Save token and other data to local storage immediately
+      localStorage.setItem("user", JSON.stringify(result.data));
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("role", result.role);
       // passing to to the dispatch to trigger the switch statement and set the user, token , role
       dispatch({
         type: "LOGIN_SUCCESS",

@@ -1,5 +1,5 @@
 import User from "../models/UserSchema.js";
-import Booking from "../models/BookingSchema.js";
+import AppointmentSchema from "../models/AppointmentSchema.js";
 import Doctor from "../models/DoctorSchema.js";
 
 export const updateUser = async (req, res) => {
@@ -67,30 +67,5 @@ export const getUserProfile = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "มีปัญหานิดหน่อย" });
-  }
-};
-
-export const getMyAppointments = async (req, res) => {
-  try {
-    // step1 ; get the appointment from the booking model
-
-    const bookings = await Booking.find({ user: req.userId });
-
-    // step 2 extract doctor id from the appointment bookin
-
-    const doctorIds = bookings.map((item) => item.doctor.id);
-
-    // step3 use the doctor id to get doctor information in the model
-
-    const doctors = await Doctor.find({
-      _id: { $in: doctorIds },
-    }).select("-password");
-
-    res
-      .status(200)
-      .json({ success: true, message: "ข้อมูลการนัด", data: doctors });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "ข้อมูลการนัด" });
   }
 };

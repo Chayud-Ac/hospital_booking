@@ -6,7 +6,6 @@ import {
   getSingleUser,
   getAllUser,
   getUserProfile,
-  getMyAppointments,
 } from "../Controllers/userController.js";
 
 import { authenticate, restrict } from "../auth/verifyToken.js";
@@ -18,7 +17,6 @@ router.post("/:id", deleteUser, restrict(["admin , doctor"]), deleteUser);
 router.get("/", getAllUser, restrict(["admin , doctor"]), getAllUser);
 
 router.get("/profile/me", authenticate, getUserProfile);
-router.get("/appointments/my-appointments", authenticate, getMyAppointments);
 router.put("/:id", updateUser, updateUser);
 
 export default router;
