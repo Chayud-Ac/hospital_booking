@@ -3,19 +3,16 @@ import User from "../models/DoctorSchema.js";
 import Appointment from "../models/AppointmentSchema.js";
 import getNextDateForDay from "../utils/getNextDateForDay.js";
 
-// Create a new appointment
 export const createAppointment = async (req, res) => {
-  const userId = req.userId; // Get userId from req (set by authenticate middleware)
+  const userId = req.userId;
   console.log(userId);
 
   try {
     const { ticketPrice, timeSlot, doctor } = req.body;
     const [day, timeRange] = timeSlot.split(" ");
 
-    // Generate appointmentDate based on the timeSlot
     const appointmentDate = getNextDateForDay(day, timeRange);
 
-    // Find the doctor and update the availability of the time slot
     const doctorData = await Doctor.findById(doctor);
     if (!doctorData) {
       return res
@@ -41,7 +38,6 @@ export const createAppointment = async (req, res) => {
     doctorData.timeSlots[slotIndex].available = false;
     await doctorData.save();
 
-    // Create the appointment
     const appointment = new Appointment({
       doctor: doctor,
       user: userId,
@@ -54,9 +50,14 @@ export const createAppointment = async (req, res) => {
 
     const savedAppointment = await appointment.save();
 
-    // Add the appointment to the doctor's appointments array
     doctorData.appointments.push(savedAppointment._id);
     await doctorData.save();
+
+    const userData = await User.findById(userId);
+    if (userData) {
+      userData.appointments.push(savedAppointment._id);
+      await userData.save();
+    }
 
     res.status(201).json({ success: true, data: savedAppointment });
   } catch (error) {
@@ -65,10 +66,13 @@ export const createAppointment = async (req, res) => {
   }
 };
 
-// Get all appointments
 export const getAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find().populate("doctor user");
+    const appointments = await Appointment.find()
+      .populate({ path: "doctor", select: "name _id" })
+      .populate({ path: "user", select: "name _id" })
+      .select("appointmentDate timeSlot status isPaid");
+
     res.status(200).json({ success: true, data: appointments });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
@@ -97,7 +101,6 @@ export const getAppointmentsForUser = async (req, res) => {
   }
 };
 
-// Delete an appointment
 export const deleteAppointment = async (req, res) => {
   try {
     const appointment = await Appointment.findById(req.params.id);
@@ -123,9 +126,64 @@ export const deleteAppointment = async (req, res) => {
       await doctorData.save();
     }
 
+    // Remove the appointment from the doctor's appointments array
+    doctorData.appointments = doctorData.appointments.filter(
+      (id) => id.toString() !== appointment._id.toString()
+    );
+    await doctorData.save();
+
+    // Remove the appointment from the user's appointments array
+    const userData = await User.findById(appointment.user);
+    if (userData) {
+      userData.appointments = userData.appointments.filter(
+        (id) => id.toString() !== appointment._id.toString()
+      );
+      await userData.save();
+    }
+
     await appointment.remove();
     res.status(200).json({ success: true, data: {} });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const UpdateAppointments = async (req, res) => {
+  const appointments = req.body; // Array of appointments to be updated
+
+  try {
+    const bulkOps = appointments.map((appointment) => ({
+      updateOne: {
+        filter: { _id: appointment._id },
+        update: {
+          status: appointment.status,
+          isPaid: appointment.isPaid,
+        },
+      },
+    }));
+
+    await Appointment.bulkWrite(bulkOps);
+
+    // Update the doctor's time slots for cancelled or completed appointments
+    for (const appt of appointments) {
+      if (appt.status === "cancelled" || appt.status === "completed") {
+        const doctor = await Doctor.findById(appt.doctor);
+        if (doctor) {
+          const slotIndex = doctor.timeSlots.findIndex(
+            (slot) => slot.time === appt.timeSlot
+          );
+          if (slotIndex !== -1) {
+            doctor.timeSlots[slotIndex].available = true;
+            await doctor.save();
+          }
+        }
+      }
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Appointments updated successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };

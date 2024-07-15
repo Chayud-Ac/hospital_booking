@@ -43,17 +43,6 @@ export const register = async (req, res) => {
       });
     }
 
-    if (role === "doctor") {
-      user = new Doctor({
-        name,
-        email,
-        password: hashPassword,
-        photo,
-        gender,
-        role,
-      });
-    }
-
     await user.save();
     res
       .status(200)

@@ -46,24 +46,27 @@ const Login = () => {
         throw new Error(result.message);
       }
 
-      // Save token and other data to local storage immediately
-      localStorage.setItem("user", JSON.stringify(result.data));
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("role", result.role);
-      // passing to to the dispatch to trigger the switch statement and set the user, token , role
+      // Extract the role from the result.data
+      const { data, token, message } = result;
+      const role = data.role;
+
+      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: {
-          user: result.data,
-          token: result.token,
-          role: result.role,
+          user: data,
+          token: token,
+          role: role,
         },
       });
 
       console.log(result, "login data");
 
       setLoading(false);
-      toast.success(result.message);
+      toast.success(message);
       navigate("/home");
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);

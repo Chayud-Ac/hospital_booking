@@ -43,6 +43,18 @@ const Header = () => {
     });
   };
 
+  const getProfilePath = () => {
+    if (role === "patient" || role === "user") {
+      return "/users/profile/me";
+    } else if (role === "doctor") {
+      return "/doctors/profile/me";
+    } else if (role === "admin") {
+      return "/admin/profile/me";
+    } else {
+      return "/login"; // Fallback in case role is not recognized
+    }
+  };
+
   useEffect(() => {
     handleStickyHeader();
     return () => window.removeEventListener("scroll", handleStickyHeader);
@@ -92,7 +104,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {token && user ? (
               <div>
-                <Link to={`/users/profile/me`}>
+                <Link to={getProfilePath()}>
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                     <img
                       src={user?.photo}

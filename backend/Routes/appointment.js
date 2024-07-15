@@ -5,6 +5,7 @@ import {
   getAppointments,
   deleteAppointment,
   getAppointmentsForUser,
+  UpdateAppointments,
 } from "../controllers/appointmentController.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.delete(
   deleteAppointment
 );
 router.get("/appointment", authenticate, getAppointmentsForUser);
+router.put("/update", authenticate, restrict(["admin"]), UpdateAppointments);
 
 export default router;

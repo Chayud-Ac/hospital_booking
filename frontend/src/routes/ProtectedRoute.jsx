@@ -4,17 +4,11 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children, allowRoles }) => {
   const { token, role } = useContext(authContext);
-  console.log(role);
-  const isAllowed = allowRoles.includes(role);
-  const accessibleRoute = token ? (
-    children
-  ) : (
-    <Navigate to="/login" replace={true} />
-  );
+  console.log("User role:", role);
 
-  ///! ที่จริงต้องใช้อันล่าง
-  //   const accessibleRoute =
-  //     token && isAllowed ? children : <Navigate to="/login" replace={true} />;
+  const isAllowed = allowRoles.includes(role);
+  const accessibleRoute =
+    token && isAllowed ? children : <Navigate to="/login" replace={true} />;
 
   return accessibleRoute;
 };
