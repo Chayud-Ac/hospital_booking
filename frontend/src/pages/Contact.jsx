@@ -1,6 +1,9 @@
-import React from "react";
+import { useEffect } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <div className="px-4 mx-auto max-w-screen-md">

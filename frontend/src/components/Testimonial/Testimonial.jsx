@@ -35,7 +35,7 @@ const Testimonial = () => {
               <img src={patientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  นาย ชยุตม์ มหิทธิภาคย์
+                  นาย กิตติพงษ์ สมานพันธ์
                 </h4>
                 <div className="flex items-center gap-[2px]">
                   <HiStar className="text-yellowColor w-[18px] h-5" />
@@ -47,7 +47,7 @@ const Testimonial = () => {
               </div>
             </div>
             <p className="text-[16px] leading-7 mt-4 text-textColor">
-              "ได้รับการบริการที่ดีมากครับ"
+              "บริการดีมาก ประทับใจมากครับ"
             </p>
           </div>
         </SwiperSlide>
@@ -57,7 +57,7 @@ const Testimonial = () => {
               <img src={patientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  นาย ชยุตม์ มหิทธิภาคย์
+                  นางสาว อรวรรณ พิมพ์จันทร์
                 </h4>
                 <div className="flex items-center gap-[2px]">
                   <HiStar className="text-yellowColor w-[18px] h-5" />
@@ -69,7 +69,7 @@ const Testimonial = () => {
               </div>
             </div>
             <p className="text-[16px] leading-7 mt-4 text-textColor">
-              "ได้รับการบริการที่ดีมากครับ"
+              "ประทับใจในบริการและความใส่ใจของเจ้าหน้าที่ค่ะ"
             </p>
           </div>
         </SwiperSlide>
@@ -79,7 +79,7 @@ const Testimonial = () => {
               <img src={patientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  นาย ชยุตม์ มหิทธิภาคย์
+                  นาย อภิชาติ จันทร์เพ็ญ
                 </h4>
                 <div className="flex items-center gap-[2px]">
                   <HiStar className="text-yellowColor w-[18px] h-5" />
@@ -91,7 +91,7 @@ const Testimonial = () => {
               </div>
             </div>
             <p className="text-[16px] leading-7 mt-4 text-textColor">
-              "ได้รับการบริการที่ดีมากครับ"
+              "การบริการที่นี่เป็นกันเองและมีมาตรฐานสูงมากครับ"
             </p>
           </div>
         </SwiperSlide>
@@ -101,7 +101,7 @@ const Testimonial = () => {
               <img src={patientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  นาย ชยุตม์ มหิทธิภาคย์
+                  นางสาว สมฤดี สายชล
                 </h4>
                 <div className="flex items-center gap-[2px]">
                   <HiStar className="text-yellowColor w-[18px] h-5" />
@@ -113,7 +113,7 @@ const Testimonial = () => {
               </div>
             </div>
             <p className="text-[16px] leading-7 mt-4 text-textColor">
-              "ได้รับการบริการที่ดีมากครับ"
+              "ชื่นชมในการบริการที่รวดเร็วและมีประสิทธิภาพค่ะ"
             </p>
           </div>
         </SwiperSlide>

@@ -1,27 +1,22 @@
 export const faqs = [
   {
-    question: "What is your medical care?",
+    question: "บริการทางการแพทย์ของคุณคืออะไร?",
     content:
-      "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+      "One Medical ก่อตั้งขึ้นบนรูปแบบการดูแลที่ดีกว่า รูปแบบที่ออกแบบมาเพื่อตอบสนองความต้องการของผู้ป่วย ซึ่งให้คุณภาพและบริการที่สูงขึ้นในราคาที่สามารถจ่ายได้ เราทำเช่นนี้ผ่านการออกแบบที่เป็นนวัตกรรม การบริการลูกค้าที่ยอดเยี่ยม และการใช้เทคโนโลยีอย่างมีประสิทธิภาพ",
   },
   {
-    question: "What happens if I need to go a hospital?",
+    question: "จะเกิดอะไรขึ้นหากฉันต้องไปโรงพยาบาล?",
     content:
-      "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+      "One Medical ก่อตั้งขึ้นบนรูปแบบการดูแลที่ดีกว่า รูปแบบที่ออกแบบมาเพื่อตอบสนองความต้องการของผู้ป่วย ซึ่งให้คุณภาพและบริการที่สูงขึ้นในราคาที่สามารถจ่ายได้ เราทำเช่นนี้ผ่านการออกแบบที่เป็นนวัตกรรม การบริการลูกค้าที่ยอดเยี่ยม และการใช้เทคโนโลยีอย่างมีประสิทธิภาพ",
   },
   {
-    question: "What happens if I need to go a hospital?",
+    question: "ฉันสามารถเยี่ยมชมสำนักงานแพทย์ของคุณได้หรือไม่?",
     content:
-      "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+      "One Medical ก่อตั้งขึ้นบนรูปแบบการดูแลที่ดีกว่า รูปแบบที่ออกแบบมาเพื่อตอบสนองความต้องการของผู้ป่วย ซึ่งให้คุณภาพและบริการที่สูงขึ้นในราคาที่สามารถจ่ายได้ เราทำเช่นนี้ผ่านการออกแบบที่เป็นนวัตกรรม การบริการลูกค้าที่ยอดเยี่ยม และการใช้เทคโนโลยีอย่างมีประสิทธิภาพ",
   },
   {
-    question: "Can I visit your medical office?",
+    question: "คุณให้บริการดูแลฉุกเฉินหรือไม่?",
     content:
-      "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
-  },
-  {
-    question: "Does you provide urgent care?",
-    content:
-      "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+      "One Medical ก่อตั้งขึ้นบนรูปแบบการดูแลที่ดีกว่า รูปแบบที่ออกแบบมาเพื่อตอบสนองความต้องการของผู้ป่วย ซึ่งให้คุณภาพและบริการที่สูงขึ้นในราคาที่สามารถจ่ายได้ เราทำเช่นนี้ผ่านการออกแบบที่เป็นนวัตกรรม การบริการลูกค้าที่ยอดเยี่ยม และการใช้เทคโนโลยีอย่างมีประสิทธิภาพ",
   },
 ];

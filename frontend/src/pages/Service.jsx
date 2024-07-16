@@ -1,8 +1,11 @@
-import React from "react";
 import { services } from "../assets/data/services";
 import ServiceCard from "../components/Services/ServiceCard";
+import { useEffect } from "react";
 
 const Service = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <div className="container mx-auto max-w-screen-lg px-4">

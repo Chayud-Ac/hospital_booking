@@ -20,7 +20,7 @@ const ServiceCard = ({ item, index }) => {
         </Link>
 
         <span
-          className="w-[44px] h-[44px] flex items-center justify-center text-[18px] leading-[30px] font-[600]"
+          className="w-[44px] h-[44px] flex items-center justify-center text-[18px] leading-[30px] font-[600] mt-1"
           style={{
             background: `${bgColor}`,
             color: `${textColor}`,

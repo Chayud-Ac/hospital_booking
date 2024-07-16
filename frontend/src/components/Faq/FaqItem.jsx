@@ -24,13 +24,17 @@ const FaqItem = ({ item }) => {
         </div>
       </div>
 
-      {isOpen && (
+      <div
+        className={`transition-max-height duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-40" : "max-h-0"
+        }`}
+      >
         <div className="mt-4">
           <p className="text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor">
             {item.content}
           </p>
         </div>
-      )}
+      </div>
     </div>
   );
 };

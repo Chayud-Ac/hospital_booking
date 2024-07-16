@@ -1,7 +1,6 @@
-import React from "react";
-import logo from "../../assets/images/logo.png";
+import React, { useEffect, useRef, useContext } from "react";
+import logo from "../../assets/images/logo.svg";
 import { NavLink, Link } from "react-router-dom";
-import { useEffect, useRef, useContext } from "react";
 import { BiMenu } from "react-icons/bi";
 import xIcon from "../../assets/images/xIcon.svg";
 import { authContext } from "../../context/AuthContext";
@@ -63,22 +62,26 @@ const Header = () => {
   const toggleMenu = () => menuRef.current.classList.toggle("show_menu");
 
   return (
-    <header className="header flex items-center" ref={headerRef}>
+    <header
+      className="header flex items-center rounded-lg shadow-md"
+      ref={headerRef}
+    >
       <div className="container">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between rounded-lg">
           {/* Logo -------------------------------------------------------------------------------------------*/}
-          <div>
-            <img src={logo} alt="" />
+          <div className="ml-[-30px]">
+            <Link to="/">
+              <img src={logo} alt="Logo" width={150} height={25} />
+            </Link>
           </div>
-
           {/* Menu --------------------------------------------------------------------------------------------*/}
           <div className="navigation" ref={menuRef}>
             <ul className="menu flex item-center gap-[2.7rem]">
               <button
                 onClick={() => menuRef.current.classList.remove("show_menu")}
-                className="absolute top-1 right-1 sm: hidden"
+                className="absolute top-1 right-1 md:hidden"
               >
-                <img src={xIcon} width={30} height={30} />
+                <img src={xIcon} width={30} height={30} alt="Close Menu" />
               </button>
               {navLink.map((link, index) => (
                 <li key={index}>
@@ -108,9 +111,9 @@ const Header = () => {
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                     <img
                       src={user?.photo}
-                      alt=""
+                      alt="User Avatar"
                       className="w-full rounded-full"
-                    ></img>
+                    />
                   </figure>
                 </Link>
               </div>

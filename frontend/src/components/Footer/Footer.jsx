@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.svg";
 import { AiFillGithub } from "react-icons/ai";
 
 const socialLinks = [
@@ -20,18 +20,18 @@ const quesickLinks01 = [
     display: "เกี่ยวกับเรา",
   },
   {
-    path: "/services",
+    path: "/service",
     display: "บริการ",
   },
 ];
 
 const quesickLinks02 = [
   {
-    path: "/find-a-doctor",
+    path: "/doctors",
     display: "พบแพทย์",
   },
   {
-    path: "/",
+    path: "/doctors",
     display: "นัดแพทย์",
   },
   {
@@ -42,7 +42,7 @@ const quesickLinks02 = [
 
 const quesickLinks03 = [
   {
-    path: "/",
+    path: "/contact",
     display: "บริจาค",
   },
   {
@@ -98,8 +98,8 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="max-md:hidden">
-            <img src={logo} alt="" />
+          <div className="max-md:hidden flex flex-col gap-4">
+            <img src={logo} alt="" width={180} />
             <p>© Copyright develop by Chayud Mahithiphark all right reserved</p>
             <div>
               {socialLinks.map((link, index) => (

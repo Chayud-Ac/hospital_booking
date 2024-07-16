@@ -103,7 +103,7 @@ const Home = () => {
                   ค้นหาหมอเลย
                 </h2>
                 <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิษฐ์
                 </p>
                 <Link
                   to="/doctors"
@@ -123,10 +123,10 @@ const Home = () => {
                   สถานที่
                 </h2>
                 <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                  xxxx-xxxx-xxx
                 </p>
                 <Link
-                  to="/doctors"
+                  to="/"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
                 >
                   <BsArrowRight className="group-hover:text-white w-6 h-5" />
@@ -144,7 +144,7 @@ const Home = () => {
                   ทำการนัด
                 </h2>
                 <p className="text__para text-[16px] leading-7 text-center text-textColor font-[400] mt-4 ">
-                  พบแพทย์ผู้เชี่ยวชาญหาประเภทพร้อมระบบปัญญาประดิดเพื่อช่วยวินิจฉัยให้แม่นยำขึ้น
+                  สามารถเลือกเวลาการนัดได้อย่างยืดหยุดตามเวลานัดของคุณหมอ
                 </p>
                 <Link
                   to="/doctors"

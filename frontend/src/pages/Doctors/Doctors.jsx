@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DoctorCard from "../../components/Doctors/DoctorCard";
-import { doctors } from "../../assets/data/doctors";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { BASE_URL } from "./../../config";
 import HashLoader from "react-spinners/HashLoader";
@@ -26,6 +25,10 @@ const Doctors = () => {
 
     return () => clearTimeout(timeout);
   }, [query]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
