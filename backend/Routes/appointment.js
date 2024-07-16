@@ -7,7 +7,7 @@ import {
   getAppointmentsForUser,
   UpdateAppointments,
   getHistoryAppointments,
-} from "../controllers/appointmentController.js";
+} from "../Controllers/appointmentController.js";
 
 const router = express.Router();
 

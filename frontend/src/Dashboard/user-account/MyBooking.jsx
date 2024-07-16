@@ -8,7 +8,6 @@ const MyBooking = () => {
     `${BASE_URL}/appointments/appointment`
   );
 
-  console.log(appointments);
   return (
     <div>
       {loading && <HashLoader size={40} color="fff" />}

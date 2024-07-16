@@ -6,9 +6,7 @@ import Doctor from "../models/DoctorSchema.js";
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await Review.find({});
-    res
-      .status(200)
-      .json({ success: true, message: "Successful", data: reviews });
+    res.status(200).json({ success: true, message: "สำเร็จ", data: reviews });
   } catch (error) {
     res.status(404).json({ success: false, message: "Not found" });
   }
@@ -38,7 +36,7 @@ export const createReview = async (req, res) => {
     console.log(error);
     res.status(404).json({
       success: false,
-      message: "Failed to submit review",
+      message: "ส่ง feedback ไม่สำเร็จ",
     });
   }
 };

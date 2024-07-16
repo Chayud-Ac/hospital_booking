@@ -43,7 +43,6 @@ const FeedBackForm = () => {
     } catch (error) {
       setLoading(false);
       toast.error("เกิดข้อผิดพลาดในการรีวิว");
-      console.error(error);
     }
   };
 

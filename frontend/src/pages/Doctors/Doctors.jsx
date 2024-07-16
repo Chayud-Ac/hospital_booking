@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DoctorCard from "../../components/Doctors/DoctorCard";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { BASE_URL } from "./../../config";
@@ -15,7 +15,6 @@ const Doctors = () => {
 
   const handleSearch = () => {
     setQuery(query.trim());
-    console.log("handle search");
   };
 
   useEffect(() => {

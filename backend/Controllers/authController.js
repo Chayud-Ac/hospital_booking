@@ -1,7 +1,6 @@
 import User from "../models/UserSchema.js";
 import Doctor from "../models/DoctorSchema.js";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
 const generateToken = (user) => {
@@ -9,7 +8,7 @@ const generateToken = (user) => {
     { id: user._id, role: user.role },
     process.env.JWT_SECRET_KEY,
     {
-      expiresIn: "15d", // Corrected from 'expiredIn'
+      expiresIn: "15d",
     }
   );
 };
@@ -24,7 +23,6 @@ export const register = async (req, res) => {
       user = await Doctor.findOne({ email });
     }
 
-    // check if user exists
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -59,8 +57,8 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     let user = null;
-    const patient = await User.findOne({ email }); // Corrected from 'findOnd'
-    const doctor = await Doctor.findOne({ email }); // Corrected from 'findOnd'
+    const patient = await User.findOne({ email });
+    const doctor = await Doctor.findOne({ email });
 
     if (patient) {
       user = patient;
@@ -70,7 +68,6 @@ export const login = async (req, res) => {
       user = doctor;
     }
 
-    // check if user exists or not
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

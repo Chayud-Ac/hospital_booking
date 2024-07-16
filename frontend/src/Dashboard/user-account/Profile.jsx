@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
 import { BASE_URL } from "../../config";
@@ -47,7 +47,6 @@ const Profile = ({ user }) => {
     const file = e.target.files[0];
 
     const data = await uploadImageToCloudinary(file);
-    console.log(data);
 
     setPreviewURL(data.url);
     setSelectedFile(data.url);
@@ -57,8 +56,6 @@ const Profile = ({ user }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formData);
-    console.log(JSON.stringify(formData));
 
     try {
       const token = localStorage.getItem("token"); // Get the token from local storage
@@ -81,7 +78,6 @@ const Profile = ({ user }) => {
       toast.success(message);
       navigate("/users/profile/me");
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
       setLoading(false);
     }
   };

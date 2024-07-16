@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import CurrentAppointment from "./CurrentAppointment";
 import HistoryAppointment from "./HistoryAppointment";

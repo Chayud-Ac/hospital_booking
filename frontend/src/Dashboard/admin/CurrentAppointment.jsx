@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import useFetchData from "../../hooks/useFetchData";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";

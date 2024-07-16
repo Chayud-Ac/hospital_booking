@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import signupImg from "../assets/images/signup.gif";
 import avatar from "../assets/images/avatar-icon.png";
 import { useState } from "react";
@@ -33,15 +33,12 @@ const Signup = () => {
     }));
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  useEffect(() => {}, [formData]);
 
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
 
     const data = await uploadImageToCloudinary(file);
-    console.log(data);
 
     setPreviewURL(data.url);
     setSelectedFile(data.url);
@@ -51,8 +48,6 @@ const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formData);
-    console.log(JSON.stringify(formData));
 
     try {
       const res = await fetch(`${BASE_URL}/auth/register`, {
@@ -73,7 +68,6 @@ const Signup = () => {
       toast.success(message);
       navigate("/login");
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
       setLoading(false);
     }
   };

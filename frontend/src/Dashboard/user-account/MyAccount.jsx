@@ -1,5 +1,3 @@
-import React from "react";
-import userImg from "../../assets/images/doctor-img01.png";
 import { useContext, useState } from "react";
 import { authContext } from "../../context/AuthContext";
 import MyBooking from "./MyBooking";
@@ -14,8 +12,6 @@ const MyAccount = () => {
   const [tab, setTab] = useState("booking");
 
   const { data, loading } = useFetchData(`${BASE_URL}/users/profile/me`);
-
-  console.log(data, "userdata");
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });

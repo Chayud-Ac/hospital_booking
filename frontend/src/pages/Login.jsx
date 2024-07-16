@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
-import { authContext, AuthContextProvider } from "../context/AuthContext.jsx";
+import { authContext } from "../context/AuthContext.jsx";
 import HashLoader from "react-spinners/HashLoader";
 
 const Login = () => {
@@ -28,8 +28,6 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formData);
-    console.log(JSON.stringify(formData));
 
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -63,13 +61,10 @@ const Login = () => {
         },
       });
 
-      console.log(result, "login data");
-
       setLoading(false);
       toast.success(message);
       navigate("/home");
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
       setLoading(false);
     }
   };

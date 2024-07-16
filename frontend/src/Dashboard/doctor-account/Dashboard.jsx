@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import HashLoader from "react-spinners/HashLoader";
 import useFetchData from "../../hooks/useFetchData";
 import { BASE_URL } from "../../config";
@@ -10,7 +10,6 @@ import Appointments from "./Appointments";
 
 const Dashboard = () => {
   const { data, loading } = useFetchData(`${BASE_URL}/doctors/profile/me`);
-  console.log(data);
 
   const [tab, setTab] = useState("overview");
 

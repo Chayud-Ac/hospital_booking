@@ -63,7 +63,7 @@ const Profile = ({ doctorData }) => {
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
     const data = await uploadImageToCloudinary(file);
-    console.log(data);
+
     setFormData({ ...formData, photo: data?.url });
   };
 
@@ -77,8 +77,6 @@ const Profile = ({ doctorData }) => {
         available: true, // Assuming all new slots are available by default
       })),
     };
-
-    console.log(formattedData);
 
     try {
       const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
@@ -97,7 +95,6 @@ const Profile = ({ doctorData }) => {
 
       toast.success(result.message);
     } catch (error) {
-      console.log(error);
       toast.error(error.message || "server error");
     }
   };

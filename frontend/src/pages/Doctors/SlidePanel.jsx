@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL, token } from "../../config";
 
@@ -7,7 +7,6 @@ const SlidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
 
   const handleTimeSlotSelect = (item) => {
     setSelectedTime(item);
-    console.log("Selected time slot:", item); // Log the selected time slot
   };
 
   const handleAppointmentBooking = async (e) => {
@@ -26,29 +25,26 @@ const SlidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
       isPaid: false,
     };
 
-    console.log(appointmentData);
+    try {
+      const res = await fetch(`${BASE_URL}/appointments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(appointmentData),
+      });
 
-    // try {
-    //   const res = await fetch(`${BASE_URL}/appointments`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify(appointmentData),
-    //   });
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message || "เกิดข้อผิดพลาด");
+      }
 
-    //   const result = await res.json();
-    //   if (!res.ok) {
-    //     throw new Error(result.message || "เกิดข้อผิดพลาด");
-    //   }
-
-    //   toast.success("การนัดหมายสำเร็จ");
-    //   // Optionally clear the selected time slot after successful booking
-    // } catch (error) {
-    //   console.error("Error booking appointment:", error);
-    //   toast.error(error.message || "server error");
-    // }
+      toast.success("การนัดหมายสำเร็จ");
+      // Optionally clear the selected time slot after successful booking
+    } catch (error) {
+      toast.error(error.message || "server error");
+    }
   };
 
   return (

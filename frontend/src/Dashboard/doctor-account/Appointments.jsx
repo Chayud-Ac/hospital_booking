@@ -1,4 +1,3 @@
-import React from "react";
 import { formatDate } from "../../utils/formatDate";
 
 const Appointments = ({ appointments }) => {

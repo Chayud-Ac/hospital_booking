@@ -81,17 +81,14 @@ export const getAppointments = async (req, res) => {
   }
 };
 
-// get single appointment for user when they are request for their booking
 export const getAppointmentsForUser = async (req, res) => {
-  const userId = req.userId; // Get userId from req (set by authenticate middleware)
+  const userId = req.userId;
 
   try {
-    // Find appointments for the user and populate only the necessary fields of the doctor
     const appointments = await Appointment.find({ user: userId })
-      .populate({ path: "doctor", select: "-password" }) // Exclude the password field
+      .populate({ path: "doctor", select: "-password" })
       .select("appointmentDate doctor");
 
-    // Map the response to include the doctor object and appointment date
     const response = appointments.map((appointment) => ({
       doctor: appointment.doctor,
       appointmentDate: appointment.appointmentDate,
@@ -112,7 +109,6 @@ export const deleteAppointment = async (req, res) => {
         .json({ success: false, message: "Appointment not found" });
     }
 
-    // Find the doctor and update the availability of the time slot
     const doctorData = await Doctor.findById(appointment.doctor);
     if (!doctorData) {
       return res
@@ -128,13 +124,11 @@ export const deleteAppointment = async (req, res) => {
       await doctorData.save();
     }
 
-    // Remove the appointment from the doctor's appointments array
     doctorData.appointments = doctorData.appointments.filter(
       (id) => id.toString() !== appointment._id.toString()
     );
     await doctorData.save();
 
-    // Remove the appointment from the user's appointments array
     const userData = await User.findById(appointment.user);
     if (userData) {
       userData.appointments = userData.appointments.filter(
@@ -151,7 +145,7 @@ export const deleteAppointment = async (req, res) => {
 };
 
 export const UpdateAppointments = async (req, res) => {
-  const appointments = req.body; // Array of appointments to be updated
+  const appointments = req.body;
 
   try {
     const bulkOps = appointments.map((appointment) => ({
@@ -166,7 +160,6 @@ export const UpdateAppointments = async (req, res) => {
 
     await Appointment.bulkWrite(bulkOps);
 
-    // Update the doctor's time slots for cancelled or completed appointments
     for (const appt of appointments) {
       if (appt.status === "cancelled" || appt.status === "completed") {
         const doctor = await Doctor.findById(appt.doctor);

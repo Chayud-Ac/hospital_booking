@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FeedBackForm from "./FeedBackForm";
 import FeedCackCard from "./FeedCackCard";
 
 const Feedback = ({ reviews, totalRating }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-
-  console.log(reviews);
 
   // Select the first 5 reviews
   const displayedReviews = reviews.slice(0, 5);
