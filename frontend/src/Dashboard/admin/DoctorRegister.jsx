@@ -136,7 +136,8 @@ const DoctorRegister = () => {
       if (!res.ok) {
         throw new Error(result.message || "Failed to register doctor");
       }
-      toast.success("Doctor registered successfully");
+      toast.success("สมัครสำเร็จ");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       toast.error(error.message || "Server error");
     }

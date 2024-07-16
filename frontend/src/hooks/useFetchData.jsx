@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { token } from "../config";
 import { toast } from "react-toastify";
 
 const useFetchData = (url) => {
@@ -11,6 +10,7 @@ const useFetchData = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const token = localStorage.getItem("token"); // Get the token from local storage
         const res = await fetch(url, {
           headers: { Authorization: `Bearer ${token}` },
         });

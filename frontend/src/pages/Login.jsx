@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
@@ -44,7 +44,6 @@ const Login = () => {
         throw new Error(result.message);
       }
 
-      // Extract the role from the result.data
       const { data, token, message } = result;
       const role = data.role;
 
@@ -61,8 +60,9 @@ const Login = () => {
         },
       });
 
-      setLoading(false);
       toast.success(message);
+
+      // Navigate after context is updated
       navigate("/home");
     } catch (error) {
       setLoading(false);

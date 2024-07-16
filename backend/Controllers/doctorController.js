@@ -120,7 +120,10 @@ export const getDoctorProfile = async (req, res) => {
         .json({ success: false, message: "ไม่มีบัญชีผู้ใช้" });
     }
 
-    const appointments = await Appointment.find({ doctor: doctorId });
+    const appointments = await Appointment.find({ doctor: doctorId }).populate(
+      "user",
+      "name gender"
+    );
 
     return res.status(200).json({
       success: true,

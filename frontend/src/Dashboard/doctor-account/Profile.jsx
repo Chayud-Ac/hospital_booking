@@ -94,6 +94,7 @@ const Profile = ({ doctorData }) => {
       }
 
       toast.success(result.message);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       toast.error(error.message || "server error");
     }

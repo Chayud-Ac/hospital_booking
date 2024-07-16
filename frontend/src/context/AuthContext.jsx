@@ -1,6 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
 
-// Set initial token
 const initialState = {
   user: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
@@ -39,10 +38,8 @@ const authReducer = (state, action) => {
 };
 
 export const AuthContextProvider = ({ children }) => {
-  // Capitalize the component name
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // อัปเดท local storage เมื่อมีการ refresh หรือ การเปลี่ยนแปลงของ state
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
     localStorage.setItem("token", state.token);

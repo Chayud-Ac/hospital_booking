@@ -192,6 +192,12 @@ export const getHistoryAppointments = async (req, res) => {
       .populate({ path: "user", select: "name _id" })
       .select("appointmentDate timeSlot status isPaid");
 
+    if (appointments.length === 0) {
+      return res
+        .status(200)
+        .json({ success: true, message: "ยังไม่มีประวัติการนัดหมาย" });
+    }
+
     res.status(200).json({ success: true, data: appointments });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
