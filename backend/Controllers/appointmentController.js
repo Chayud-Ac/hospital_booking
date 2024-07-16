@@ -68,7 +68,9 @@ export const createAppointment = async (req, res) => {
 
 export const getAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find()
+    const appointments = await Appointment.find({
+      status: { $in: ["pending", "approved"] },
+    })
       .populate({ path: "doctor", select: "name _id" })
       .populate({ path: "user", select: "name _id" })
       .select("appointmentDate timeSlot status isPaid");
@@ -185,5 +187,20 @@ export const UpdateAppointments = async (req, res) => {
       .json({ success: true, message: "Appointments updated successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const getHistoryAppointments = async (req, res) => {
+  try {
+    const appointments = await Appointment.find({
+      status: { $in: ["cancelled", "completed"] },
+    })
+      .populate({ path: "doctor", select: "name _id" })
+      .populate({ path: "user", select: "name _id" })
+      .select("appointmentDate timeSlot status isPaid");
+
+    res.status(200).json({ success: true, data: appointments });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import CurrentAppointment from "./CurrentAppointment";
-import HistoryAppoinment from "./HistoryAppoinment";
+import HistoryAppointment from "./HistoryAppointment";
 import DoctorRegister from "./DoctorRegister";
 
 const AdminDashboard = () => {
@@ -30,7 +30,7 @@ const AdminDashboard = () => {
         </select>
       </div>
       {tab === "current" && <CurrentAppointment />}
-      {tab === "history" && <HistoryAppoinment />}
+      {tab === "history" && <HistoryAppointment />}
       {tab === "register" && <DoctorRegister />}
     </div>
   );
