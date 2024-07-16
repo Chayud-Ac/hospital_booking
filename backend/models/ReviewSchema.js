@@ -47,10 +47,18 @@ reviewSchema.statics.calcAverageRatings = async function (doctorId) {
       },
     },
   ]);
-  await Doctor.findByIdAndUpdated(doctorId, {
-    totalRating: stats[0].numOfRating,
-    averageRating: stats[0].avgRating,
-  });
+
+  if (stats.length > 0) {
+    await Doctor.findByIdAndUpdate(doctorId, {
+      totalRating: stats[0].numOfRating,
+      averageRating: stats[0].avgRating,
+    });
+  } else {
+    await Doctor.findByIdAndUpdate(doctorId, {
+      totalRating: 0,
+      averageRating: 0,
+    });
+  }
 };
 
 reviewSchema.post("save", function () {

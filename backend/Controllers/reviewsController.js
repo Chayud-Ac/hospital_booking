@@ -19,12 +19,8 @@ export const getAllReviews = async (req, res) => {
 export const createReview = async (req, res) => {
   // เมคชัวว่า user กำหนด id ของหมอ ถ้า ใน body มันไม่มีข้อมูลของคุณหมอ
   // เราจะ set doctorId ให้ตรงกับ id ของ url ที่ user อยู่  ../../doctors/id
-  if (!req.body.doctor) {
-    req.body.doctor = req.params.doctorId;
-  }
-  if (!req.body.user) {
-    req.body.user = req.userId;
-  }
+  req.body.doctor = req.params.doctorId;
+  req.body.user = req.userId;
 
   const newReview = new Review(req.body);
 
@@ -37,12 +33,12 @@ export const createReview = async (req, res) => {
 
     res
       .status(200)
-      .json({ success: true, message: "Review submit", data: savedReview });
+      .json({ success: true, message: "Review submitted", data: savedReview });
   } catch (error) {
     console.log(error);
     res.status(404).json({
       success: false,
-      message: "failed to submit review",
+      message: "Failed to submit review",
     });
   }
 };

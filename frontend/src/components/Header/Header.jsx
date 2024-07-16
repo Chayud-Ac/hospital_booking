@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext } from "react";
 import logo from "../../assets/images/logo.svg";
 import { NavLink, Link } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import xIcon from "../../assets/images/xIcon.svg";
 import { authContext } from "../../context/AuthContext";
+import avarIcon from "../../assets/images/avatar-icon.png";
 
 const navLink = [
   {
@@ -69,7 +70,7 @@ const Header = () => {
       <div className="container">
         <div className="flex items-center justify-between rounded-lg">
           {/* Logo -------------------------------------------------------------------------------------------*/}
-          <div className="ml-[-30px]">
+          <div className="">
             <Link to="/">
               <img src={logo} alt="Logo" width={150} height={25} />
             </Link>
@@ -110,7 +111,7 @@ const Header = () => {
                 <Link to={getProfilePath()}>
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                     <img
-                      src={user?.photo}
+                      src={user?.photo || avarIcon}
                       alt="User Avatar"
                       className="w-full rounded-full"
                     />

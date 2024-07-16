@@ -8,38 +8,43 @@ import { BASE_URL, token } from "../../config";
 const FeedBackForm = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const [reviewText, SetReviewText] = useState("");
+  const [reviewText, setReviewText] = useState("");
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       if (!rating || !reviewText) {
         setLoading(false);
         return toast.error("ไม่มีข้อความในช่องรีวิว");
       }
+
       const res = await fetch(`${BASE_URL}/doctors/${id}/reviews`, {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ rating, reviewText }),
+        body: JSON.stringify({ rating, reviewText, doctor: id }), // No need to pass user ID here
       });
 
-      if (res.ok) {
+      const result = await res.json();
+
+      if (!res.ok) {
         setLoading(false);
-        throw new Error(result.message);
+        return toast.error(result.message);
       }
 
       setLoading(false);
+      toast.success("รีวิวส่งสำเร็จ");
     } catch (error) {
       setLoading(false);
       toast.error("เกิดข้อผิดพลาดในการรีวิว");
+      console.error(error);
     }
-    return res;
   };
 
   return (
@@ -81,7 +86,7 @@ const FeedBackForm = () => {
           className="border border-solid boder-[#0066ff34] focus:outline outline-primaryColor w-full px-4 py-3 rounded-md"
           rows="5"
           placeholder="เขียนข้อความ"
-          onChange={(e) => SetReviewText(e.target.value)}
+          onChange={(e) => setReviewText(e.target.value)}
         ></textarea>
       </div>
 

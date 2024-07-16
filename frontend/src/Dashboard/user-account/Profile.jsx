@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
-import { BASE_URL, token } from "../../config";
+import { BASE_URL } from "../../config";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
 
@@ -62,11 +61,12 @@ const Profile = ({ user }) => {
     console.log(JSON.stringify(formData));
 
     try {
+      const token = localStorage.getItem("token"); // Get the token from local storage
       const res = await fetch(`${BASE_URL}/users/${user._id}`, {
         method: "put",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Use the token from local storage
         },
         body: JSON.stringify(formData),
       });

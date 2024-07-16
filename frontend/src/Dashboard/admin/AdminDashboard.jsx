@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import CurrentAppointment from "./CurrentAppointment";
 import HistoryAppointment from "./HistoryAppointment";
 import DoctorRegister from "./DoctorRegister";
+import { authContext } from "../../context/AuthContext";
 
 const AdminDashboard = () => {
+  const { dispatch } = useContext(authContext);
   const [tab, setTab] = useState("current");
 
   const handleTabChange = (e) => {
     setTab(e.target.value);
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    // Optionally, redirect to login page or home page
+    window.location.href = "/login"; // Update the path as needed
   };
 
   return (
@@ -28,6 +39,12 @@ const AdminDashboard = () => {
           <option value="history">ประวัติการนัดหมาย</option>
           <option value="register">ลงทะเบียนแพทย์</option>
         </select>
+        <button
+          onClick={handleLogout}
+          className="border border-red-500 text-red-500 rounded-md p-2 ml-4"
+        >
+          Logout
+        </button>
       </div>
       {tab === "current" && <CurrentAppointment />}
       {tab === "history" && <HistoryAppointment />}
