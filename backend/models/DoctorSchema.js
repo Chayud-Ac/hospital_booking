@@ -26,6 +26,7 @@ const DoctorSchema = new mongoose.Schema({
   timeSlots: [
     {
       time: { type: String, required: true, index: true },
+      day: { type: String, required: true },
       available: { type: Boolean, default: true },
     },
   ],

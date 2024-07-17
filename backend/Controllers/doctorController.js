@@ -22,7 +22,6 @@ export const updateDoctor = async (req, res) => {
   const photo = req.file ? req.file.path : req.body.photo;
 
   try {
-    // No need to reformat timeSlots here as they should already be in the correct format
     const updatedData = {
       name,
       email,
@@ -107,7 +106,6 @@ export const getAllDoctor = async (req, res) => {
   }
 };
 
-// response object of req doctor data base on the id from the frontend
 export const getDoctorProfile = async (req, res) => {
   const doctorId = req.userId;
 

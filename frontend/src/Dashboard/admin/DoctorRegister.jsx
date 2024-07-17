@@ -113,6 +113,7 @@ const DoctorRegister = () => {
   const formatTimeSlots = (timeSlots) => {
     return timeSlots.map((slot) => ({
       time: `${slot.day} ${slot.startingTime}-${slot.endingTime}`,
+      day: slot.day,
       available: true,
     }));
   };

@@ -1,5 +1,5 @@
 import Doctor from "../models/DoctorSchema.js";
-import User from "../models/DoctorSchema.js";
+import User from "../models/UserSchema.js";
 import Appointment from "../models/AppointmentSchema.js";
 import getNextDateForDay from "../utils/getNextDateForDay.js";
 
@@ -23,7 +23,7 @@ export const createAppointment = async (req, res) => {
     }
 
     const slotIndex = doctorData.timeSlots.findIndex(
-      (slot) => slot.time === timeSlot
+      (slot) => slot.time === timeSlot && slot.day === day
     );
     if (slotIndex === -1) {
       return res
@@ -146,7 +146,7 @@ export const deleteAppointment = async (req, res) => {
   }
 };
 
-export const UpdateAppointments = async (req, res) => {
+export const updateAppointments = async (req, res) => {
   const appointments = req.body;
 
   try {
