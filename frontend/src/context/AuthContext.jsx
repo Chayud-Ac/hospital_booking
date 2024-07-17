@@ -44,6 +44,8 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(state.user));
     localStorage.setItem("token", state.token);
     localStorage.setItem("role", state.role);
+    // Check if user.photo exists and log it
+    console.log(state.user);
   }, [state]);
 
   return (

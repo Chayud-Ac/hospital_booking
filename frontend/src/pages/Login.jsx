@@ -64,6 +64,7 @@ const Login = () => {
 
       // Navigate after context is updated
       navigate("/home");
+      window.location.reload();
     } catch (error) {
       setLoading(false);
     }

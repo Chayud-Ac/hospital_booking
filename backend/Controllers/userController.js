@@ -2,11 +2,17 @@ import User from "../models/UserSchema.js";
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
+  const updateData = { ...req.body };
+
+  // Check if the password is empty, null, or undefined
+  if (!updateData.password) {
+    delete updateData.password;
+  }
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { $set: req.body },
+      { $set: updateData },
       { new: true }
     );
     res.status(200).json({ success: true, message: "เปลี่ยนแปลงสำเร็จ" });

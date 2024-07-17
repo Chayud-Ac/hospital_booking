@@ -17,7 +17,7 @@ const DoctorCard = ({ doctor, date }) => {
   return (
     <div className="p-3 lg:p-1 mt-2">
       {date && (
-        <div className="mb-5 mt-5 bg-primaryColor p-5 rounded-xl text-white font-semibold">
+        <div className="mb-5 mt-5 bg-slate-400 p-5 rounded-xl text-white font-semibold">
           {convertDateToThai(date)} นาฟ๊กา{" "}
           <span className="text-red-500">โปรดมาก่อนเวลา 15 นาที</span>
         </div>

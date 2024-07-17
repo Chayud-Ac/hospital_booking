@@ -69,13 +69,13 @@ const Header = () => {
     >
       <div className="container">
         <div className="flex items-center justify-between rounded-lg">
-          {/* Logo -------------------------------------------------------------------------------------------*/}
+          {/* Logo */}
           <div className="">
             <Link to="/">
               <img src={logo} alt="Logo" width={150} height={25} />
             </Link>
           </div>
-          {/* Menu --------------------------------------------------------------------------------------------*/}
+          {/* Menu */}
           <div className="navigation" ref={menuRef}>
             <ul className="menu flex item-center gap-[2.7rem]">
               <button
@@ -104,14 +104,14 @@ const Header = () => {
             </ul>
           </div>
 
-          {/* Navbar right --------------------------------------------------------------------------------------- */}
+          {/* Navbar right */}
           <div className="flex items-center gap-4">
             {token && user ? (
               <div>
                 <Link to={getProfilePath()}>
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                     <img
-                      src={user?.photo || avarIcon}
+                      src={avarIcon}
                       alt="User Avatar"
                       className="w-full rounded-full"
                     />

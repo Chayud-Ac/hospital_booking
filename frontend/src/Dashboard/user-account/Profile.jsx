@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
 import { BASE_URL } from "../../config";
@@ -13,7 +13,6 @@ const Profile = ({ user }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
     photo: "",
     gender: "",
     bloodType: "",
@@ -35,7 +34,6 @@ const Profile = ({ user }) => {
       setFormData({
         name: user.name || "",
         email: user.email || "",
-        password: "",
         photo: user.photo || "",
         gender: user.gender || "",
         bloodType: user.bloodType || "",
@@ -67,18 +65,21 @@ const Profile = ({ user }) => {
         },
         body: JSON.stringify(formData),
       });
-      const { message } = await res.json();
+      const { message, updatedUser } = await res.json(); // Assuming the API returns the updated user data
 
       if (!res.ok) {
         toast.error(message);
         throw new Error(message);
       }
 
+      // Dispatch the updated user data
+
       setLoading(false);
       toast.success(message);
       navigate("/users/profile/me");
     } catch (error) {
       setLoading(false);
+      toast.error("An error occurred while updating the profile.");
     }
   };
 
@@ -101,16 +102,6 @@ const Profile = ({ user }) => {
             placeholder="อีเมล"
             name="email"
             value={formData.email || ""}
-            onChange={(e) => handleInputChange(e)}
-            className="w-full px-4 py-3 border-b  border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[22px] leading-7 text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
-          />
-        </div>
-        <div className="mb-5">
-          <input
-            type="password"
-            placeholder="หรัส"
-            name="password"
-            value={formData.password || ""}
             onChange={(e) => handleInputChange(e)}
             className="w-full px-4 py-3 border-b  border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[22px] leading-7 text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
           />
