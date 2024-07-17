@@ -11,6 +11,8 @@ export const createAppointment = async (req, res) => {
     const { ticketPrice, timeSlot, doctor } = req.body;
     const [day, timeRange] = timeSlot.split(" ");
 
+    console.log(day, timeRange);
+
     const appointmentDate = getNextDateForDay(day, timeRange);
 
     const doctorData = await Doctor.findById(doctor);
