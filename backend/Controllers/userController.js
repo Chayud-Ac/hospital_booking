@@ -25,10 +25,15 @@ export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await User.findByIdAndDelete(id);
-    res.status(200).json({ success: true, message: "ไม่มีบัญชีผู้ใช้" });
+    // Set the user as inactive rather than deleting
+    await User.findByIdAndUpdate(id, { isActive: false });
+    res
+      .status(200)
+      .json({ success: true, message: "User account deactivated" });
   } catch (error) {
-    res.status(500).json({ success: false, message: "ลบบ้ได้" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to deactivate user" });
   }
 };
 
@@ -36,8 +41,16 @@ export const getSingleUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const user = await User.findById(id).select("-password");
-    res.status(200).json({ success: true, message: "User found", data: user });
+    const user = await User.findById({ _id: id, isActive: true }).select(
+      "-password"
+    );
+    if (user) {
+      res
+        .status(200)
+        .json({ success: true, message: "บัญชีผู้ใช้", data: user });
+    } else {
+      res.status(404).json({ success: false, message: "ไม่มีบัญชีผู้ใช้" });
+    }
   } catch (error) {
     res.status(404).json({ success: false, message: "ไม่มีบัญชีผู้ใช้" });
   }
@@ -45,7 +58,7 @@ export const getSingleUser = async (req, res) => {
 
 export const getAllUser = async (req, res) => {
   try {
-    const users = await User.find({}).select("-password");
+    const users = await User.find({ isActive: true }).select("-password");
     res
       .status(200)
       .json({ success: true, message: "Users found", data: users });
