@@ -83,7 +83,10 @@ npm run server
 cd backend/
 node middleware/createSuperadmin.js
 ```
+## admin
 
+email : admin@gmail.com
+password : 123123
 
 
 
