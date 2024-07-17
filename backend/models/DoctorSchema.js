@@ -7,38 +7,21 @@ const DoctorSchema = new mongoose.Schema({
   phone: { type: Number },
   photo: { type: String },
   ticketPrice: { type: Number },
-  role: {
-    type: String,
-  },
-
-  // Fields for doctors only
+  role: { type: String },
   specialization: { type: String },
-  qualifications: {
-    type: Array,
-  },
-
-  experiences: {
-    type: Array,
-  },
-
+  qualifications: { type: Array },
+  experiences: { type: Array },
   bio: { type: String },
   about: { type: String },
   timeSlots: [
     {
-      time: { type: String, required: true, index: true },
-      day: { type: String, required: true },
+      time: { type: String, required: true }, // e.g., "Monday 09:00-10:00"
       available: { type: Boolean, default: true },
     },
   ],
   reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
-  averageRating: {
-    type: Number,
-    default: 0,
-  },
-  totalRating: {
-    type: Number,
-    default: 0,
-  },
+  averageRating: { type: Number, default: 0 },
+  totalRating: { type: Number, default: 0 },
   isApproved: {
     type: String,
     enum: ["pending", "approved", "cancelled"],

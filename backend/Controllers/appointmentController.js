@@ -9,9 +9,9 @@ export const createAppointment = async (req, res) => {
 
   try {
     const { ticketPrice, timeSlot, doctor } = req.body;
-    const [day, timeRange] = timeSlot.split(" ");
 
-    console.log(day, timeRange);
+    // Extract day and timeRange directly from the timeSlot format
+    const [day, timeRange] = timeSlot.split(" ");
 
     const appointmentDate = getNextDateForDay(day, timeRange);
 
@@ -23,7 +23,7 @@ export const createAppointment = async (req, res) => {
     }
 
     const slotIndex = doctorData.timeSlots.findIndex(
-      (slot) => slot.time === timeSlot && slot.day === day
+      (slot) => slot.time === timeSlot
     );
     if (slotIndex === -1) {
       return res
@@ -37,6 +37,7 @@ export const createAppointment = async (req, res) => {
         .json({ success: false, message: "Time slot already booked" });
     }
 
+    // Mark the slot as unavailable
     doctorData.timeSlots[slotIndex].available = false;
     await doctorData.save();
 
@@ -52,6 +53,7 @@ export const createAppointment = async (req, res) => {
 
     const savedAppointment = await appointment.save();
 
+    // Update doctor and user records with the new appointment
     doctorData.appointments.push(savedAppointment._id);
     await doctorData.save();
 
