@@ -5,7 +5,7 @@ import {
   getAppointments,
   deleteAppointment,
   getAppointmentsForUser,
-  UpdateAppointments,
+  updateAppointments,
   getHistoryAppointments,
 } from "../Controllers/appointmentController.js";
 
@@ -20,7 +20,7 @@ router.delete(
   deleteAppointment
 );
 router.get("/appointment", authenticate, getAppointmentsForUser);
-router.put("/update", authenticate, restrict(["admin"]), UpdateAppointments);
+router.put("/update", authenticate, restrict(["admin"]), updateAppointments);
 router.get(
   "/history",
   authenticate,

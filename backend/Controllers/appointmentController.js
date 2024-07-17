@@ -47,7 +47,7 @@ export const createAppointment = async (req, res) => {
       appointmentDate,
       timeSlot,
       status: "pending",
-      isPaid: true,
+      isPaid: false,
     });
 
     const savedAppointment = await appointment.save();
