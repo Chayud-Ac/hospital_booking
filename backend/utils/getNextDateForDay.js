@@ -1,6 +1,5 @@
 import moment from "moment";
 
-//  function เปลี่ยนตัว appointmentdate ที่มาจาก request เป็น format ที่ถูกต้อง
 const getNextDateForDay = (day, timeRange) => {
   const daysOfWeek = {
     sunday: 0,
@@ -15,13 +14,12 @@ const getNextDateForDay = (day, timeRange) => {
   const today = moment().startOf("day");
   const targetDay = daysOfWeek[day.toLowerCase()];
 
-  // If the target day is before or the same as today, set to next week
   let targetDate = today.clone().day(targetDay);
-  if (targetDate.isSameOrBefore(today)) {
+
+  if (targetDate.isSameOrBefore(today, "day")) {
     targetDate.add(1, "week");
   }
 
-  // Set the time
   const [startTime] = timeRange.split("-");
   const timeMoment = moment(startTime, "HH:mm");
 
