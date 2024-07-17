@@ -2,7 +2,7 @@
 
 โปรเจคนี้เป็น project-base learning ที่ทำเกี่ยวกับ application การนัดนัดพบแพทย์ โปรเจคนี้ทำมาเพื่อฝึกสกิลในการทำทั้ง frontend และ backend โดยใช้ stack ที่ประกอบไปด้วย (javascript , react , tailwind ,css , mongoDB , express , nodeJS)
 สามารถรับชมตั้วโปรเจคได้ live server เนื่องจากผมเช่า server แบบฟรี ระบบหลังบ้านอาจจะทำการ response ข้อมูลของหมอช้าหน่อยนะครับ ( เป็นแค่ตอนเข้าหน้า live server ครั้งแรก )
-live server : [http://localhost:5173/doctors/profile/me](https://hospital-booking-frontend.onrender.com)
+live server : (https://hospital-booking-frontend.onrender.com)
 
 
 ## Features
